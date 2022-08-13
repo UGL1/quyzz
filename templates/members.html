@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block the_body %}
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <th>Nom d'utilisateur</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        </thead>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ url_for('update_user',name=user.user_name) }}"> {{ user.user_name }}</a></td>
+                <td> {{ user.last_name }}</td>
+                <td> {{ user.first_name }}</td>
+                <td> {{ user.email }}</td>
+                <td> {{ user.role }}</td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endblock %}

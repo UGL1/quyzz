@@ -1,0 +1,65 @@
+<script defer src={{ url_for('static',filename='js/mcq.js') }}></script>
+{% extends "base.html" %}
+{% block the_body %}
+    <h1>Quizz</h1>
+    <div class="container bg-light border rounded shadow p-4">
+
+        {% for q in quest %}
+            <div class="slide">
+
+            <pre><code class="python-code">
+                {{ q | safe }}
+            </code></pre>
+                <br>
+                <div class="row">
+                    <div class="col-1 mt-2">
+                        <input type="radio" name="truc" id="opt1" value="1">
+                    </div>
+                    <div class="col-11">
+                        <label for="opt1">
+                            <pre><code class="python-code">{{ q }}</code></pre>
+                        </label>
+                    </div>
+                </div>
+
+
+                 <div class="row">
+                    <div class="col-1 mt-2">
+                        <input type="radio" name="truc" id="opt2" value="2">
+                    </div>
+                    <div class="col-11">
+                        <label for="opt1">
+                           Salut c'est du texte
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+        <br>
+        <button class="btn btn-primary" onclick="buttonTest(this)">next</button>
+        <div class="progress mt-4">
+            <div id="questionProgress" class="progress-bar" role="progressbar" style="width:80%"></div>
+        </div>
+        <p id="questionNumberLabel" class="mb-0"></p>
+    </div>
+
+    {#    THIS SCRIPT HANDLES SYNTAX COLORING#}
+    <script type="text/javascript">
+        window.onload = function () {
+            const collection = document.getElementsByClassName("python-code")
+            for (let codeElement of collection) {
+                codeElement.classList.add('cm-s-default');
+                const code = codeElement.innerText;
+                codeElement.innerHTML = "";
+                CodeMirror.runMode(
+                    code,
+                    'python',
+                    codeElement
+                );
+            }
+        };
+    </script>
+{% endblock %}
+
+

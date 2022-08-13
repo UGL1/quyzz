@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block the_body %}
+    <div class="container bg-light border rounded shadow p-4">
+        <h1>{{ user.user_name }}</h1>
+        {{ user.first_name }} {{ user.last_name }} <br>
+        {{ user.email }}<br><br>
+        <a href="{{ url_for('delete_user',name=user.user_name) }}"><button type="button" class="btn btn-outline-danger">Supprimer</button></a> &nbsp;
+        <a href="{{ url_for('change_user_role',name=user.user_name) }}"><button type="button" class="btn btn-outline-success">Modifier le rôle</button></a> &nbsp;
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <img src="{{ url_for('static',filename='img/logo.svg') }}" width="36" alt="" height="36"
+             class="d-inline-block align-text-top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="navbar-brand" href="#">Nom du site</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+{#            TEST #}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for("mcq") }}">Test MCQ</a>
+                </li>
+{#            END TEST#}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for("index") }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for("dashboard") }}">Mon compte</a>
+                </li>
+                {% if not current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for("sign_up") }}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+                {% if current_user.role == "admin" %}
+                    {% include "navbaradmin.html" %}
+                {% endif %}
+                <li class="nav-item">
+
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('log_out' ) }}">
+                            <button type="button" class="btn btn-outline-light">Déconnexion
+                                ({{ current_user.user_name }})
+                            </button>
+                        </a>
+
+                    {% else %}
+                        <a href="{{ url_for('log_in' ) }}">
+                            <button type="button" class="btn btn-outline-light">Connexion</button>
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
