@@ -8,9 +8,13 @@
     <script src="{{ url_for('static',filename='js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     {#CodeMirror#}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.61.0/lib/codemirror.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.61.0/addon/runmode/runmode-standalone.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.61.0/mode/python/python.min.js"></script>
+    {#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.61.0/lib/codemirror.min.css">#}
+    {#    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.61.0/addon/runmode/runmode-standalone.min.js"></script>#}
+    {#    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.61.0/mode/python/python.min.js"></script>#}
+
+    <link href="{{ url_for('static',filename='cm/codemirror.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='cm/runmode-standalone.js') }}"></script>
+    <script src="{{ url_for('static',filename='cm/python.js') }}"></script>
 
     {#extra css#}
     <link rel="stylesheet" href="{{ url_for('static',filename='css/extra.css') }}">

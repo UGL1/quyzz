@@ -90,8 +90,8 @@ def log_in():
             login_user(user, remember=form.remember.data)
             flash(f"Bienvenue {form.user_name.data} !", "success")
             # prevent open redirects
-            next = request.args.get('next')
-            if not is_safe_url(next):
+            next_ = request.args.get('next')
+            if not is_safe_url(next_):
                 return abort(400)
             return redirect(url_for("dashboard"))
 
@@ -203,8 +203,54 @@ def groups():
 # -------------- TEST
 @app.route('/mcq')
 def mcq():
-    quest = ["print('Hello')", "machin", "chose"]
-    return render_template("mcq.html", quest=quest)
+    question = {"id": "00001",
+                "statement_text": "Que fait le script suivant ?",
+                "statement_code": """for i in range(5):
+    print(i)""",
+                "answers": [
+                    {
+                        "id": "4",
+                        "text": "rien",
+                        "code": ""
+                    },
+                    {
+                        "id": "5",
+                        "text": "tout",
+                        "code": ""
+                    },
+                    {
+                        "id": "6",
+                        "text": "",
+                        "code": "42"
+                    }
+                ],
+                "solution": "4"
+                }
+    question2 = {"id": "00002",
+                 "statement_text": "Qui est gogol ?",
+                 "statement_code": "",
+                 "answers": [
+                     {
+                         "id": "1",
+                         "text": "rien",
+                         "code": ""
+                     },
+                     {
+                         "id": "2",
+                         "text": "tout",
+                         "code": ""
+                     },
+                     {
+                         "id": "3",
+                         "text": "",
+                         "code": "42"
+                     }
+                 ],
+                 "solution": 1
+                 }
+    quest = [question, question2]
+
+    return render_template("mcq_test.html", quest=quest)
 
 
 # -------------- END TEST
