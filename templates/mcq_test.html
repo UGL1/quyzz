@@ -4,7 +4,7 @@
     <h1>Quizz</h1>
     <div class="container bg-light border rounded shadow p-4">
         {% for q in quest %}
-            <div class="slide">
+            <div class="slide" id="{{ q.id }}">
                 {% if q.statement_text %}
                     {{ q.statement_text }}
                 {% endif %}
@@ -14,7 +14,7 @@
                 {% for a in q.answers %}
                     <div class="row">
                         <div class="col-1 mt-2">
-                            <input type="radio" name="truc" value="1">
+                            <input type="radio" name="{{ q.id }}" value="{{ a.id }}">
                         </div>
                         <div class="col-11">
                             <label for="opt1">

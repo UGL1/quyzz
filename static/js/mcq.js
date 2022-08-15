@@ -25,7 +25,15 @@ function displayQuestion() {
 
 function buttonTest(element) {
     questionCounter += 1;
-    questionCounter %= slides.length;
-    displayQuestion()
+    if (questionCounter < slides.length) {
+        displayQuestion();
+    } else {
+        for (let s of slides) {
+            let selector = "input[name='" + s.id + "']:checked";
+            let answer = document.querySelector(selector);
+            let result = answer ? answer.value : "none";
+            console.log("ID question ", s.id, " ID réponse : ", result);
+        }
+    }
 
 }
