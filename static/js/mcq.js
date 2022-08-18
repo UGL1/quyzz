@@ -23,7 +23,7 @@ function displayQuestion() {
 
 }
 
-function buttonTest(element) {
+function buttonTest() {
     questionCounter += 1;
     if (questionCounter < slides.length) {
         displayQuestion();
@@ -33,8 +33,15 @@ function buttonTest(element) {
             let answer = document.querySelector(selector);
             let result = answer ? answer.value : "none";
             console.log("ID question ", s.id, " ID réponse : ", result);
-        //    TODO: proceed by id, not by value ???
+            //    TODO: proceed by id, not by value ???
         }
     }
 
 }
+
+function cheat() {
+    alert("Event triggered");
+}
+
+window.addEventListener('blur', cheat);
+
